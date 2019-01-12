@@ -10,6 +10,13 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const fs = require('fs')
+const papa = require('papaparse')
+const file = fs.createReadStream('public/data.csv')
+const Sequelize = require('sequelize')
+// const parseData = require('./parseData')
+const {User, Game} = require('./db/models')
+
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -104,6 +111,18 @@ const startListening = () => {
   const io = socketio(server)
   require('./socket')(io)
 }
+
+// papa.parse(file, {
+//   complete: function(results){
+//     for(let i = 1; i<results.data.length; i++){
+//       Game.create({
+//         Name: results.data[i][0],
+//         Score: results.data[i][28],
+//         Salary: results.data[i][4]
+//       })
+//     }
+//   }
+// } )
 
 const syncDb = () => db.sync()
 
