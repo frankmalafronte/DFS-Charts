@@ -16,6 +16,7 @@ const file = fs.createReadStream('public/data.csv')
 const Sequelize = require('sequelize')
 // const parseData = require('./parseData')
 const {User, Game} = require('./db/models')
+const cron = require('node-cron')
 
 module.exports = app
 
@@ -124,6 +125,9 @@ const startListening = () => {
 //   }
 // } )
 
+// cron.schedule("* * * * *", function(){
+//   console.log("running every minute")
+// })
 const syncDb = () => db.sync()
 
 async function bootApp() {
