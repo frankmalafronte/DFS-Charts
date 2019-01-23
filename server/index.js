@@ -17,6 +17,9 @@ const Sequelize = require('sequelize')
 // const parseData = require('./parseData')
 const {User, Game} = require('./db/models')
 const cron = require('node-cron')
+const http = require('http')
+const wget = require('node-wget')
+const scraper = require('./scraper.js')
 
 module.exports = app
 
@@ -128,6 +131,11 @@ const startListening = () => {
 // cron.schedule("* * * * *", function(){
 //   console.log("running every minute")
 // })
+
+scraper(
+  'https://dailyfantasynerd.com/optimizer/fanduel/nba?d=Fri%20Jan%2011%202019'
+)
+
 const syncDb = () => db.sync()
 
 async function bootApp() {
