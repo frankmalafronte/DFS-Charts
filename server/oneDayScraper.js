@@ -1,13 +1,11 @@
-const rp = require('request-promise')
-const $ = require('cheerio')
 const puppeteer = require('puppeteer')
 const request = require('request')
 const input = {username: 'frankmalpod', password: '123456'}
 const Sequelize = require('sequelize')
 const {User, Game} = require('./db/models')
 
-const scraper = async function(url) {
-  const browser = await puppeteer.launch({headless: false})
+const oneDayScraper = async function(url) {
+  const browser = await puppeteer.launch({headless: true})
   const page = await browser.newPage()
   page.setUserAgent(
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
@@ -113,4 +111,4 @@ const scraper = async function(url) {
   await handleDayData()
 }
 
-module.exports = scraper
+module.exports = oneDayScraper

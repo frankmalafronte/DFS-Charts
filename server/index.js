@@ -19,7 +19,8 @@ const {User, Game} = require('./db/models')
 const cron = require('node-cron')
 const http = require('http')
 const wget = require('node-wget')
-const scraper = require('./scraper.js')
+const oneDayScraper = require('./oneDayScraper.js')
+const multiDayScraper = require('./multiDayScaper.js')
 
 module.exports = app
 
@@ -116,23 +117,9 @@ const startListening = () => {
   require('./socket')(io)
 }
 
-// papa.parse(file, {
-//   complete: function(results){
-//     for(let i = 1; i<results.data.length; i++){
-//       Game.create({
-//         Name: results.data[i][0],
-//         Score: results.data[i][28],
-//         Salary: results.data[i][4]
-//       })
-//     }
-//   }
-// } )
-
-// cron.schedule("* 3 * * *", function(){
-//   scraper(
-//     'https://dailyfantasynerd.com/optimizer/draftkings/nba'
-//   )
-// })
+cron.schedule('* 3 * * *', function() {
+  oneDayScraper('https://dailyfantasynerd.com/optimizer/draftkings/nba')
+})
 
 const syncDb = () => db.sync()
 
