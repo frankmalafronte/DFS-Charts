@@ -16,7 +16,8 @@ async function seed() {
     Game.create({
       Name: 'Lebron James',
       Score: 32.3,
-      Salary: 16000
+      Salary: 15000,
+      Date: '1/1/20'
     })
   ])
 

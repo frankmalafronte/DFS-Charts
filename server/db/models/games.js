@@ -11,7 +11,7 @@ const Game = db.define('games', {
   Salary: {
     type: Sequelize.INTEGER
   },
-  Date: Sequelize.String
+  Date: Sequelize.STRING
 })
 
 module.exports = Game
