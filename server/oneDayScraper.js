@@ -1,52 +1,10 @@
 const rp = require('request-promise')
 const $ = require('cheerio')
-// const url = 'https://dailyfantasynerd.com/optimizer/fanduel/nba?d=Fri%20Jan%2011%202019'
 const puppeteer = require('puppeteer')
 const request = require('request')
 const input = {username: 'frankmalpod', password: '123456'}
 const Sequelize = require('sequelize')
 const {User, Game} = require('./db/models')
-
-// const scraper = function(url){
-// rp(url).then(function(html){
-//   console.log(html)
-// }).catch(function(err){
-//   console.log(err)
-// })
-// }
-
-// const scraper = function(url){
-//   puppeteer
-//   .launch()
-//   .then(function(browser){
-//     return browser.newPage()
-//   })
-//   .then(function(page){
-//     return page.goto(url).then(function(){
-//       return page.content()
-//     })
-//   })
-// .then(function(html){
-//   $("a",html).each(function(){
-//     console.log($(this).text())
-//   })
-// })
-// }
-
-// const scraper = function (){
-// request(
-//   {method:'GET',
-//   url: 'http://api.scraperapi.com/?key=0e53723a08e56bfc7ef4a0202f992800&url='+encodeURIComponent('https://dailyfantasynerd.com/optimizer/fanduel/nba?d=Fri%20Jan%2011%202019')+'&render=true',
-//   headers: {
-//     Accept:'application/json',
-//   },
-// },
-// function(error,response,body){
-//   console.log('Status',response.statusCode)
-//   console.log('Response', body)
-// }
-// )
-// }
 
 const scraper = async function(url) {
   const browser = await puppeteer.launch({headless: false})
@@ -57,8 +15,9 @@ const scraper = async function(url) {
   await page.goto(url)
   // await page.waitForSelector('input-username');
   async function logIn() {
+    console.log('logging in')
     try {
-      await page.waitForSelector('#input-username', {timeout: 5000})
+      await page.waitForSelector('#input-username', {timeout: 50})
       await page.type('#input-username', input.username)
       await page.type('#input-password', input.password)
       await page.click('#login-form > fieldset > div.bottom-buffer-md > button')
@@ -88,6 +47,9 @@ const scraper = async function(url) {
         for (let i = 0; i < rows.length; i++) {
           const row = rows[i]
           const elements = await row.$$('td')
+          let date = new Date()
+          date.setDate(date.getDate() - 1)
+          date = date.toDateString()
           const playerName = await page.evaluate(
             el => el.innerText,
             elements[0]
@@ -95,11 +57,13 @@ const scraper = async function(url) {
           let salary = await page.evaluate(el => el.innerText, elements[5])
           const points = await page.evaluate(el => el.innerText, elements[29])
           salary = salary.replace(/[^\d.]/g, '')
-          Game.create({
-            Name: playerName,
-            Score: parseInt(points),
-            Salary: parseFloat(salary)
-          })
+          console.log(playerName, salary, points, date)
+          //    Game.create({
+          //   Name: playerName,
+          //   Score: parseFloat(points),
+          //   Salary: parseFloat(salary),
+          // Date: date
+          // })
         }
       }
     } catch (error) {
@@ -107,27 +71,46 @@ const scraper = async function(url) {
     }
   }
 
-  async function navigateToNextTable() {
-    console.log('going to next table')
-    try {
-      page.click(
-        '#wrap > div.container.projection > div:nth-child(5) > div.col-sm-4.text-center > ul > li:last-child > a',
-        {timeout: 100}
-      )
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // async function navigateToNextTable(){
+  //   console.log('going to next table')
+
+  // }
 
   async function handleDayData() {
-    const moreTablesToGo = true
-    console.log('handling days data')
+    let moreTablesToGo = null
+    async function clickLastButton() {
+      try {
+        await page.waitForSelector('ul.pagination', {timeout: 5000})
+        const pagination = await page.$$('ul.pagination')
+        for (const part of pagination) {
+          const buttons = await part.$$('li')
+          const lastButton = buttons[buttons.length - 1]
+          let className = await lastButton.getProperty('className')
+          let isDisabled = await className.jsonValue()
+          console.log(isDisabled)
+          await buttons[buttons.length - 1].click()
+          moreTablesToGo = isDisabled
+        }
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+
+    while (moreTablesToGo !== 'disabled') {
+      try {
+        await scrapeTable()
+        await clickLastButton()
+        console.log('clicked button')
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
   }
 
   await logIn()
   await page.waitForNavigation()
   await goBackOneDay()
-  await scrapeTable()
+  await handleDayData()
 }
 
 module.exports = scraper

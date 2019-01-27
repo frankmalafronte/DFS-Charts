@@ -43,8 +43,6 @@
     "compression": "^1.7.3",
     "connect-session-sequelize": "^4.1.0",
     "convert-csv-to-json": "0.0.13",
-    "csv": "^5.0.1",
-    "csvtojson": "^2.0.8",
     "express": "^4.16.3",
     "express-session": "^1.15.1",
     "fs": "0.0.1-security",

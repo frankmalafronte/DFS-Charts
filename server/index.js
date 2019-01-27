@@ -128,13 +128,11 @@ const startListening = () => {
 //   }
 // } )
 
-// cron.schedule("* * * * *", function(){
-//   console.log("running every minute")
+// cron.schedule("* 3 * * *", function(){
+//   scraper(
+//     'https://dailyfantasynerd.com/optimizer/draftkings/nba'
+//   )
 // })
-
-scraper(
-  'https://dailyfantasynerd.com/optimizer/fanduel/nba?d=Fri%20Jan%2011%202019'
-)
 
 const syncDb = () => db.sync()
 
