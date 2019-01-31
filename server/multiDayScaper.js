@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const request = require('request')
 const input = {username: 'frankmalpod', password: '123456'}
 const Sequelize = require('sequelize')
-const {User, Game} = require('./db/models')
+const {User, Game, Player} = require('./db/models')
 
 let counter = 1
 
@@ -57,12 +57,13 @@ const multiDayScraper = async function(url, times) {
           let salary = await page.evaluate(el => el.innerText, elements[5])
           const points = await page.evaluate(el => el.innerText, elements[29])
           salary = salary.replace(/[^\d.]/g, '')
-          // console.log(playerName, salary, points, date)
-          Game.create({
+          const player = await Player.findOrCreate({where: {Name: playerName}})
+          const game = Game.create({
             Name: playerName,
             Score: parseFloat(points),
             Salary: parseFloat(salary),
-            Date: date
+            Date: date,
+            playerId: player[0].id
           })
         }
       }

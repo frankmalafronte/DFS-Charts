@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const request = require('request')
 const input = {username: 'frankmalpod', password: '123456'}
 const Sequelize = require('sequelize')
-const {User, Game} = require('./db/models')
+const {User, Game, Player} = require('./db/models')
 
 const oneDayScraper = async function(url) {
   const browser = await puppeteer.launch({headless: true})
@@ -56,23 +56,20 @@ const oneDayScraper = async function(url) {
           const points = await page.evaluate(el => el.innerText, elements[29])
           salary = salary.replace(/[^\d.]/g, '')
           console.log(playerName, salary, points, date)
-          //    Game.create({
-          //   Name: playerName,
-          //   Score: parseFloat(points),
-          //   Salary: parseFloat(salary),
-          // Date: date
-          // })
+          const player = await Player.findOrCreate({where: {Name: playerName}})
+          const game = await Game.create({
+            Name: playerName,
+            Score: parseFloat(points),
+            Salary: parseFloat(salary),
+            Date: date,
+            playerId: player[0].id
+          })
         }
       }
     } catch (error) {
       console.log(error)
     }
   }
-
-  // async function navigateToNextTable(){
-  //   console.log('going to next table')
-
-  // }
 
   async function handleDayData() {
     let moreTablesToGo = null

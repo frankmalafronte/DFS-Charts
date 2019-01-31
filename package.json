@@ -17,7 +17,7 @@
     "prepare": "if [ -d .git ]; then npm-merge-driver install; fi",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "postinstall": "touch secrets.js",
-    "seed": "node script/seed.js",
+    "seed": "node scripts/seed.js",
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
@@ -58,6 +58,7 @@
     "prop-types": "^15.6.2",
     "puppeteer": "git+https://github.com/GoogleChrome/puppeteer.git",
     "react": "^16.4.2",
+    "react-autosuggest": "^9.4.3",
     "react-dom": "^16.4.2",
     "react-google-charts": "^3.0.10",
     "react-redux": "^5.0.2",
@@ -68,6 +69,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "sequelize": "^4.38.0",
+    "sequelize-cli": "^5.4.0",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
@@ -89,6 +91,7 @@
     "babel-eslint": "^8.2.6",
     "babel-loader": "^8.0.0-beta.4",
     "chai": "^3.5.0",
+    "css-loader": "^2.1.0",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
     "eslint": "^4.19.1",
@@ -104,6 +107,7 @@
     "react-test-renderer": "^16.4.2",
     "redux-devtools-extension": "^2.13.5",
     "redux-mock-store": "^1.5.3",
+    "style-loader": "^0.23.1",
     "supertest": "^3.1.0",
     "webpack": "^4.16.4",
     "webpack-cli": "^3.1.0"
