@@ -117,9 +117,9 @@ const startListening = () => {
   require('./socket')(io)
 }
 
-cron.schedule('* 3 * * *', function() {
-  oneDayScraper('https://dailyfantasynerd.com/optimizer/draftkings/nba')
-})
+// cron.schedule('* 3 * * *', function() {
+//   oneDayScraper('https://dailyfantasynerd.com/optimizer/draftkings/nba')
+// })
 
 const syncDb = () => db.sync()
 
