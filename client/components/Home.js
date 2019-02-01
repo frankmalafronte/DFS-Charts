@@ -12,9 +12,8 @@ class Graph extends Component {
 
   //query database for all players
   async componentDidMount() {
-    await Axios.get('/api/players').then(response =>
-      this.setState({players: response.data})
-    )
+    const response = await Axios.get('/api/players')
+    this.setState({players: response.data})
     let tempHashMap = {}
     for (let i = 0; i < this.state.players.length; i++) {
       const el = this.state.players[i]

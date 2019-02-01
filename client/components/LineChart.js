@@ -4,10 +4,8 @@ import Chart from 'react-google-charts'
 const coerceChartData = props => {
   let output = [['x', 'score']]
   for (let i = props.games.length - 1; i > 0; i--) {
-    console.log(props.games.Score)
     output.push([props.games[i].Date, parseFloat(props.games[i].Score)])
   }
-  console.log(output)
   return output
 }
 
