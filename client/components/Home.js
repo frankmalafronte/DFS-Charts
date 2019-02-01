@@ -21,6 +21,7 @@ class Graph extends Component {
     }
     console.log(tempHashMap)
     this.setState({hashMap: tempHashMap})
+    console.log(this.state)
   }
 
   // renders the list based on the input. When there is no input the list is hidden
