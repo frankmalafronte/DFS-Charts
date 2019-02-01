@@ -19,6 +19,7 @@ class Graph extends Component {
       const el = this.state.players[i]
       tempHashMap[el.Name] = el.id
     }
+    console.log(tempHashMap)
     this.setState({hashMap: tempHashMap})
   }
 
