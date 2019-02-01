@@ -9,10 +9,10 @@ class Player extends Component {
   }
 
   async componentDidMount() {
-    await Axios.get(`/api/players/${this.props.match.params.id}`).then(
-      response =>
-        this.setState({player: response.data.Name, games: response.data.games})
+    const response = await Axios.get(
+      `/api/players/${this.props.match.params.id}`
     )
+    this.setState({player: response.data.Name, games: response.data.games})
   }
   render() {
     return (
