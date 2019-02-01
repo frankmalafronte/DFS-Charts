@@ -1,15 +1,15 @@
-import React, {Component, Fragment} from 'react'
+import React from 'react'
 import Chart from 'react-google-charts'
 
 const coerceChartData = props => {
-  let output = [['x', 'score']]
+  let output = [['x', 'salary']]
   for (let i = props.games.length - 1; i > 0; i--) {
-    output.push([props.games[i].Date, parseFloat(props.games[i].Score)])
+    output.push([props.games[i].Date, parseInt(props.games[i].Salary)])
   }
   return output
 }
 
-function createLineChart(props) {
+function createSalaryLineChart(props) {
   console.log(props)
   let data = coerceChartData(props)
   return (
@@ -26,7 +26,7 @@ function createLineChart(props) {
             title: 'Date'
           },
           vAxis: {
-            title: 'Points'
+            title: 'Salary'
           }
         }}
       />
@@ -34,4 +34,4 @@ function createLineChart(props) {
   )
 }
 
-export default createLineChart
+export default createSalaryLineChart
