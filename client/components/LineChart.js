@@ -1,47 +1,39 @@
 import React, {Component, Fragment} from 'react'
 import Chart from 'react-google-charts'
 
-class LineChart extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {chartData: null}
+const coerceChartData = props => {
+  let output = [['x', 'score']]
+  for (let i = props.games.length - 1; i > 0; i--) {
+    console.log(props.games.Score)
+    output.push([props.games[i].Date, parseFloat(props.games[i].Score)])
   }
-
-  componentDidMount() {
-    this.coerceChartData()
-  }
-
-  coerceChartData = () => {
-    let output = [['x', 'score']]
-    for (let i = 0; i < this.props.games.length; i++) {
-      output.push([i + 1, this.props.games.Score])
-    }
-    console.log(output)
-    this.setState({chartData: output})
-  }
-
-  render() {
-    console.log(this.props)
-
-    return (
-      <h3> Chart </h3>
-      // <Chart
-      // width = '500px'
-      // height = '300px'
-      // chartType = 'LineChart'
-      // loader = {<div> Loading Chart </div>}
-      // data = {this.state.chartData}
-      // options={{
-      //   hAxis:{
-      //     title: 'Date',
-      //   },
-      //   vAxis:{
-      //     title:'Points',
-      //   },
-      // }}
-      // />
-    )
-  }
+  console.log(output)
+  return output
 }
 
-export default LineChart
+function createLineChart(props) {
+  console.log(props)
+  let data = coerceChartData(props)
+  return (
+    <div>
+      <h3> {props.player}</h3>
+      <Chart
+        width="1200px"
+        height="600px"
+        chartType="LineChart"
+        loader={<div> Loading Chart </div>}
+        data={data}
+        options={{
+          hAxis: {
+            title: 'Date'
+          },
+          vAxis: {
+            title: 'Points'
+          }
+        }}
+      />
+    </div>
+  )
+}
+
+export default createLineChart
