@@ -18,8 +18,8 @@ function createLineChart(props) {
     <div>
       <h3> {props.player}</h3>
       <Chart
-        width="1200px"
-        height="600px"
+        width="1400px"
+        height="800px"
         chartType="LineChart"
         loader={<div> Loading Chart </div>}
         data={data}
