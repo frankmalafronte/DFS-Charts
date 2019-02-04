@@ -10,11 +10,10 @@ const coerceChartData = props => {
 }
 
 function createSalaryLineChart(props) {
-  console.log(props)
   let data = coerceChartData(props)
   return (
     <div>
-      <h3> {props.player}</h3>
+      <h3> {props.player} </h3>
       <Chart
         width="1400px"
         height="800px"
