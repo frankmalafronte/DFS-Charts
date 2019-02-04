@@ -4,13 +4,13 @@ const input = {username: 'frankmalpod', password: '123456'}
 const Sequelize = require('sequelize')
 const {User, Game, Player} = require('./db/models')
 
-const oneDayScraper = async function(url) {
+const oneDayScraper = async function() {
   const browser = await puppeteer.launch({headless: true})
   const page = await browser.newPage()
   page.setUserAgent(
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
   )
-  await page.goto(url)
+  await page.goto('https://dailyfantasynerd.com/optimizer/draftkings/nba')
   // await page.waitForSelector('input-username');
   async function logIn() {
     console.log('logging in')

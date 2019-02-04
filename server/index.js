@@ -121,6 +121,7 @@ const startListening = () => {
 //   oneDayScraper('https://dailyfantasynerd.com/optimizer/draftkings/nba')
 // })
 
+// multiDayScraper('https://dailyfantasynerd.com/optimizer/draftkings/nba',7)
 const syncDb = () => db.sync()
 
 async function bootApp() {
