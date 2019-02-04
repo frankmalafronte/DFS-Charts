@@ -74,11 +74,6 @@ const multiDayScraper = async function(url, times) {
     }
   }
 
-  // async function navigateToNextTable(){
-  //   console.log('going to next table')
-
-  // }
-
   async function handleDayData() {
     let moreTablesToGo = null
     async function clickLastButton() {
