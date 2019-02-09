@@ -13,7 +13,6 @@ function createSalaryLineChart(props) {
   let data = coerceChartData(props)
   return (
     <div>
-      <h3> {props.player} </h3>
       <Chart
         width="1400px"
         height="800px"

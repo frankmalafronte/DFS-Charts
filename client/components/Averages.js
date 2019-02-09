@@ -24,7 +24,7 @@ const averages = props => {
   return (
     <h4>
       {' '}
-      Average Score: {averageScore(props)} Average Salary:{' '}
+      James Harden Average Score: {averageScore(props)} Average Salary:{' '}
       {averageSalary(props)}
     </h4>
   )

@@ -1,0 +1,37 @@
+.AutoCompleteText {
+  width: 100;
+  border: 1px solid grey;
+  font-size: 14px;
+}
+
+.AutoCompleteText input {
+  width: 100%;
+  border: none;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-Component {
+  /* margin: 150px auto 0 auto; */
+}
+
+.AutoCompleteText ul {
+  list-style-type: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  /* border-top: 1px solid grey; */
+}
+
+/* .AutoCompleteText ul::before {
+  content: ""
+} */
+
+.AutoCompleteText li {
+  padding: 10px 5px;
+}

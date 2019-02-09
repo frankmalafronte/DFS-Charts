@@ -1,10 +1,11 @@
 import React, {Component, Fragment} from 'react'
 import Axios from '../../node_modules/axios'
 import {Link} from 'react-router-dom'
+import './AutoCompleteText.css'
 
 // import Autosuggest from 'react-autosuggest';
 
-class Graph extends Component {
+class SubmitBox extends Component {
   constructor(props) {
     super(props)
     this.state = {players: [], suggestions: [], selection: '', hashMap: {}}
@@ -26,20 +27,36 @@ class Graph extends Component {
 
   // renders the list based on the input. When there is no input the list is hidden
   renderSuggestions() {
-    const {suggestions} = this.state
+    const {suggestions, players} = this.state
     if (suggestions.length === 0) {
-      return null
+      return (
+        <ul>
+          {players
+            .map(item => item.Name)
+            .sort()
+            .map(playerName => (
+              <li
+                onClick={() => this.suggestionSelected(playerName)}
+                key={playerName}
+              >
+                {' '}
+                {playerName}
+              </li>
+            ))}
+        </ul>
+      )
+    } else {
+      return (
+        <ul>
+          {suggestions.map(item => (
+            <li onClick={() => this.suggestionSelected(item)} key={item}>
+              {' '}
+              {item}
+            </li>
+          ))}
+        </ul>
+      )
     }
-    return (
-      <ul>
-        {suggestions.map(item => (
-          <li onClick={() => this.suggestionSelected(item)} key={item}>
-            {' '}
-            {item}
-          </li>
-        ))}
-      </ul>
-    )
   }
 
   //handles the user input, filtering the list by
@@ -68,7 +85,7 @@ class Graph extends Component {
     return (
       <div>
         {/* <h4> Search for a player by first name, then click the name you wish to select </h4> */}
-        <div>
+        <div className="AutoCompleteText">
           <input
             value={selection}
             onChange={e => this.handleChange(e)}
@@ -84,4 +101,4 @@ class Graph extends Component {
   }
 }
 
-export default Graph
+export default SubmitBox
