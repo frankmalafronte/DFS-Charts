@@ -3,6 +3,7 @@ import Axios from '../../node_modules/axios'
 import ScoreLineChart from './ScoreLineChart'
 import SalaryLineChart from './SalaryLineChart'
 import Averages from './Averages'
+import ScoreScatterPlot from './ScoreScatterplot'
 
 class Player extends Component {
   constructor(props) {
@@ -42,7 +43,8 @@ class Player extends Component {
       <div>
         <Averages games={this.state.games} player={this.state.player} />
         <ScoreLineChart games={this.state.games} player={this.state.player} />
-        <SalaryLineChart games={this.state.games} player={this.state.player} />
+        {/* <SalaryLineChart games={this.state.games} player={this.state.player} /> */}
+        <ScoreScatterPlot games={this.state.games} player={this.state.player} />
       </div>
     )
   }
