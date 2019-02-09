@@ -42,9 +42,9 @@ class Player extends Component {
     return (
       <div>
         <Averages games={this.state.games} player={this.state.player} />
-        <ScoreLineChart games={this.state.games} player={this.state.player} />
-        {/* <SalaryLineChart games={this.state.games} player={this.state.player} /> */}
         <ScoreScatterPlot games={this.state.games} player={this.state.player} />
+        <ScoreLineChart games={this.state.games} player={this.state.player} />
+        <SalaryLineChart games={this.state.games} player={this.state.player} />
       </div>
     )
   }
