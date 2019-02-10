@@ -29,22 +29,23 @@ class SubmitBox extends Component {
   renderSuggestions() {
     const {suggestions, players} = this.state
     if (suggestions.length === 0) {
-      return (
-        <ul>
-          {players
-            .map(item => item.Name)
-            .sort()
-            .map(playerName => (
-              <li
-                onClick={() => this.suggestionSelected(playerName)}
-                key={playerName}
-              >
-                {' '}
-                {playerName}
-              </li>
-            ))}
-        </ul>
-      )
+      return null
+      // return (
+      //   <ul>
+      //     {players
+      //       .map(item => item.Name)
+      //       .sort()
+      //       .map(playerName => (
+      //         <li
+      //           onClick={() => this.suggestionSelected(playerName)}
+      //           key={playerName}
+      //         >
+      //           {' '}
+      //           {playerName}
+      //         </li>
+      //       ))}
+      //   </ul>
+      // )
     } else {
       return (
         <ul>
