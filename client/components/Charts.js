@@ -4,6 +4,7 @@ import ScoreLineChart from './ScoreLineChart'
 import SalaryLineChart from './SalaryLineChart'
 import Averages from './Averages'
 import ScoreScatterPlot from './ScoreScatterplot'
+import SubmitBox from './SubmitBox'
 
 class Player extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class Player extends Component {
   render() {
     return (
       <div>
+        <SubmitBox />
         <Averages games={this.state.games} player={this.state.player} />
         <ScoreScatterPlot games={this.state.games} player={this.state.player} />
         <ScoreLineChart games={this.state.games} player={this.state.player} />
