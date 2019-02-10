@@ -20,7 +20,6 @@ const averageSalary = props => {
 }
 
 const averages = props => {
-  console.log('I ran')
   return (
     <h4>
       {' '}

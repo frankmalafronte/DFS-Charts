@@ -27,25 +27,18 @@ class SubmitBox extends Component {
 
   // renders the list based on the input. When there is no input the list is hidden
   renderSuggestions() {
-    const {suggestions, players} = this.state
-    if (suggestions.length === 0) {
+    const {suggestions, players, selection} = this.state
+    if (suggestions.length === 0 && selection !== '') {
+      return (
+        <Link
+          onClick={this.forceUpdate}
+          to={`/players/${this.state.hashMap[this.state.selection]}`}
+        >
+          Submit{' '}
+        </Link>
+      )
+    } else if (suggestions.length === 0) {
       return null
-      // return (
-      //   <ul>
-      //     {players
-      //       .map(item => item.Name)
-      //       .sort()
-      //       .map(playerName => (
-      //         <li
-      //           onClick={() => this.suggestionSelected(playerName)}
-      //           key={playerName}
-      //         >
-      //           {' '}
-      //           {playerName}
-      //         </li>
-      //       ))}
-      //   </ul>
-      // )
     } else {
       return (
         <ul>
@@ -94,9 +87,6 @@ class SubmitBox extends Component {
           />
           {this.renderSuggestions()}
         </div>
-        <Link to={`/players/${this.state.hashMap[this.state.selection]}`}>
-          Submit{' '}
-        </Link>
       </div>
     )
   }
