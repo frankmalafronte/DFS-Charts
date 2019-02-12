@@ -2,7 +2,7 @@ import React from 'react'
 import Chart from 'react-google-charts'
 
 const coerceChartData = props => {
-  let output = [['x', 'salary']]
+  let output = [['date', '$']]
   for (let i = props.games.length - 1; i > 0; i--) {
     output.push([props.games[i].Date, parseInt(props.games[i].Salary)])
   }
@@ -20,12 +20,7 @@ function createSalaryLineChart(props) {
         loader={<div> Loading Chart </div>}
         data={data}
         options={{
-          hAxis: {
-            title: 'Date'
-          },
-          vAxis: {
-            title: 'Salary'
-          }
+          legend: 'none'
         }}
       />
     </div>

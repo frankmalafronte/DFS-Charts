@@ -20,12 +20,7 @@ function createScoreScatterPlot(props) {
         loader={<div> Loading Chart </div>}
         data={data}
         options={{
-          hAxis: {
-            title: 'Date'
-          },
-          vAxis: {
-            title: 'Score'
-          }
+          legend: 'none'
         }}
       />
     </div>
