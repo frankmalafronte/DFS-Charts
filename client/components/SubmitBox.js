@@ -84,6 +84,7 @@ class SubmitBox extends Component {
             type="search"
             placeholder="Search by First Name"
           />
+
           {this.renderSuggestions()}
         </div>
       </div>
