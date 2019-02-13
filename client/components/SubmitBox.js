@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import Axios from '../../node_modules/axios'
 import {Link} from 'react-router-dom'
-import './AutoCompleteText.css'
+import './Styling.css'
 
 // import Autosuggest from 'react-autosuggest';
 
@@ -20,9 +20,7 @@ class SubmitBox extends Component {
       const el = this.state.players[i]
       tempHashMap[el.Name] = el.id
     }
-    console.log(tempHashMap)
     this.setState({hashMap: tempHashMap})
-    console.log(this.state)
   }
 
   // renders the list based on the input. When there is no input the list is hidden
@@ -83,7 +81,8 @@ class SubmitBox extends Component {
           <input
             value={selection}
             onChange={e => this.handleChange(e)}
-            type="text"
+            type="search"
+            placeholder="Search by First Name"
           />
           {this.renderSuggestions()}
         </div>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import SubmitBox from './SubmitBox'
-import './AutoCompleteText.css'
+import './Styling.css'
+import Welcome from './Welcome'
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-Component">
-          <SubmitBox />
+          <Welcome />
         </div>
       </div>
     )
