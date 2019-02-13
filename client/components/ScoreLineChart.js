@@ -20,7 +20,8 @@ function createSalaryLineChart(props) {
         loader={<div> Loading Chart </div>}
         data={data}
         options={{
-          legend: 'none'
+          legend: 'none',
+          title: 'Points Scored: Line'
         }}
       />
     </div>

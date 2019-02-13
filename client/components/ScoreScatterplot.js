@@ -20,7 +20,8 @@ function createScoreScatterPlot(props) {
         loader={<div> Loading Chart </div>}
         data={data}
         options={{
-          legend: 'none'
+          legend: 'none',
+          title: 'Fantasy Points Scored'
         }}
       />
     </div>
