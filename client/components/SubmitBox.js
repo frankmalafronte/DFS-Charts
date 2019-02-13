@@ -8,7 +8,7 @@ import './Styling.css'
 class SubmitBox extends Component {
   constructor(props) {
     super(props)
-    this.state = {players: [], suggestions: [], selection: '', hashMap: {}}
+    this.state = {players: [], suggestions: [], hashMap: {}}
   }
 
   //query database for all players
@@ -21,21 +21,13 @@ class SubmitBox extends Component {
       tempHashMap[el.Name] = el.id
     }
     this.setState({hashMap: tempHashMap})
+    console.log(this.state.hashMap)
   }
 
   // renders the list based on the input. When there is no input the list is hidden
   renderSuggestions() {
-    const {suggestions, players, selection} = this.state
-    if (suggestions.length === 0 && selection !== '') {
-      return (
-        <Link
-          onClick={this.forceUpdate}
-          to={`/players/${this.state.hashMap[this.state.selection]}`}
-        >
-          Submit{' '}
-        </Link>
-      )
-    } else if (suggestions.length === 0) {
+    const {suggestions} = this.state
+    if (suggestions.length === 0) {
       return null
     } else {
       return (
@@ -62,24 +54,20 @@ class SubmitBox extends Component {
         .sort()
         .filter(el => regex.test(el))
     }
-    this.setState(() => ({suggestions, selection: value}))
+    this.setState(() => ({suggestions}))
   }
 
   suggestionSelected(value) {
-    this.setState(() => ({
-      selection: value,
-      suggestions: []
-    }))
+    console.log(value)
+    window.location.href = `/players/${this.state.hashMap[value]}`
   }
 
   render() {
-    const {selection} = this.state
     return (
       <div>
         {/* <h4> Search for a player by first name, then click the name you wish to select </h4> */}
         <div className="AutoCompleteText">
           <input
-            value={selection}
             onChange={e => this.handleChange(e)}
             type="search"
             placeholder="Search by First Name"

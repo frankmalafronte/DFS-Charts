@@ -12,9 +12,10 @@ class Welcome extends Component {
         <div className="HomePageHeaderContainer">
           <div id="Header">DFS Charts</div>
         </div>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          <div className="HomePageHeaderContainer">
-            DFS Charts provides handy tools for visualizing DFS basketball data
+        <div className="HomePageHeaderContainer">
+          <div id="SubHeader">
+            DFS Charts pulls data from across the web to provide you with handy
+            tools for visualizing daily fantasy basketball data
           </div>
         </div>
         <div style={{display: 'flex', justifyContent: 'center'}}>

@@ -6,12 +6,8 @@
 
 #Header {
   font-size: 30px;
+  color: #455f70;
 }
-
-/* .SubHeader{
-  display: flex;
-  justify-content: center;
-} */
 
 .AutoCompleteText {
   width: 200px;
