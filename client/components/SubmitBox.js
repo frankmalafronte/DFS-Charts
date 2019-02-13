@@ -26,7 +26,7 @@ class SubmitBox extends Component {
 
   // renders the list based on the input. When there is no input the list is hidden
   renderSuggestions() {
-    const {suggestions, players, selection} = this.state
+    const {suggestions} = this.state
     if (suggestions.length === 0) {
       return null
     } else {
@@ -54,7 +54,7 @@ class SubmitBox extends Component {
         .sort()
         .filter(el => regex.test(el))
     }
-    this.setState(() => ({suggestions, selection: value}))
+    this.setState(() => ({suggestions}))
   }
 
   suggestionSelected(value) {
@@ -63,13 +63,11 @@ class SubmitBox extends Component {
   }
 
   render() {
-    const {selection} = this.state
     return (
       <div>
         {/* <h4> Search for a player by first name, then click the name you wish to select </h4> */}
         <div className="AutoCompleteText">
           <input
-            value={selection}
             onChange={e => this.handleChange(e)}
             type="search"
             placeholder="Search by First Name"

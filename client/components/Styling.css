@@ -9,16 +9,8 @@
   color: #455f70;
 }
 
-#SubHeader {
-}
-
-.PlayerName {
-  color: none;
-  text-decoration: none;
-}
-
 .AutoCompleteText {
-  width: 250px;
+  width: 200px;
   border: 1px solid grey;
   font-size: 14px;
 }
