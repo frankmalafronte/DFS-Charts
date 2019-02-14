@@ -6,17 +6,20 @@ import Averages from './Averages'
 import ScoreScatterPlot from './ScoreScatterplot'
 import SubmitBox from './SubmitBox'
 
-class Player extends Component {
+class Players extends Component {
   constructor(props) {
     super(props)
-    this.state = {games: [], player: []}
+    this.state = {games: [], player: [], toggleScore: true}
+  }
+
+  toggleScore() {
+    this.setState({toggleScore: !this.state.toggleScore})
   }
 
   async componentDidMount() {
     const response = await Axios.get(
       `/api/players/${this.props.match.params.id}`
     )
-    console.log(response)
     const sortDateStrings = input => {
       for (let i = 0; i < input.length; i++) {
         let el = input[i]
@@ -39,17 +42,46 @@ class Player extends Component {
       games: sortDateStrings(response.data.games)
     })
   }
+
   render() {
+    const {scoreChartType} = this.state
     return (
       <div>
-        <SubmitBox />
-        <Averages games={this.state.games} player={this.state.player} />
-        <ScoreScatterPlot games={this.state.games} player={this.state.player} />
-        <ScoreLineChart games={this.state.games} player={this.state.player} />
-        <SalaryLineChart games={this.state.games} player={this.state.player} />
+        <div>
+          <SubmitBox />
+        </div>
+        <div>
+          <Averages games={this.state.games} player={this.state.player} />
+        </div>
+        <div>
+          {this.state.toggleScore ? (
+            <button onClick={() => this.toggleScore()}>Line Chart </button>
+          ) : (
+            <button onClick={() => this.toggleScore()}>scatter plot </button>
+          )}
+        </div>
+        <div>
+          {this.state.toggleScore ? (
+            <ScoreScatterPlot
+              games={this.state.games}
+              player={this.state.player}
+            />
+          ) : (
+            <ScoreLineChart
+              games={this.state.games}
+              player={this.state.player}
+            />
+          )}
+        </div>
+        <div>
+          <SalaryLineChart
+            games={this.state.games}
+            player={this.state.player}
+          />
+        </div>
       </div>
     )
   }
 }
 
-export default Player
+export default Players
