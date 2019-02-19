@@ -5,6 +5,7 @@ import SalaryLineChart from './SalaryLineChart'
 import Averages from './Averages'
 import ScoreScatterPlot from './ScoreScatterplot'
 import SubmitBox from './SubmitBox'
+// import Grid from './Grid'
 
 class Players extends Component {
   constructor(props) {
@@ -29,8 +30,6 @@ class Players extends Component {
         let date = month + ' ' + day + ' ' + year
         el.Date = date
       }
-      // console.log(response.data.games)
-      // console.log(input)
       input.sort(function(a, b) {
         return new Date(b.Date) - new Date(a.Date)
       })
@@ -44,7 +43,6 @@ class Players extends Component {
   }
 
   render() {
-    const {scoreChartType} = this.state
     return (
       <div>
         <div>
@@ -55,9 +53,13 @@ class Players extends Component {
         </div>
         <div>
           {this.state.toggleScore ? (
-            <button onClick={() => this.toggleScore()}>Line Chart </button>
+            <button type="button" onClick={() => this.toggleScore()}>
+              View Line Chart{' '}
+            </button>
           ) : (
-            <button onClick={() => this.toggleScore()}>scatter plot </button>
+            <button type="button" onClick={() => this.toggleScore()}>
+              View Scatter Plot{' '}
+            </button>
           )}
         </div>
         <div>

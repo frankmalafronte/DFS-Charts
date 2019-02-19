@@ -21,7 +21,6 @@ class SubmitBox extends Component {
       tempHashMap[el.Name] = el.id
     }
     this.setState({hashMap: tempHashMap})
-    console.log(this.state.hashMap)
   }
 
   // renders the list based on the input. When there is no input the list is hidden
@@ -48,7 +47,7 @@ class SubmitBox extends Component {
     const value = event.target.value
     let suggestions = []
     if (value.length > 0) {
-      const regex = new RegExp(`^${value}`, 'i')
+      const regex = new RegExp(`^${value}| ${value}`, 'i')
       suggestions = this.state.players
         .map(el => el.Name)
         .sort()
@@ -58,7 +57,6 @@ class SubmitBox extends Component {
   }
 
   suggestionSelected(value) {
-    console.log(value)
     window.location.href = `/players/${this.state.hashMap[value]}`
   }
 
