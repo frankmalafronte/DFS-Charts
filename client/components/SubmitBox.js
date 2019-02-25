@@ -70,7 +70,7 @@ class SubmitBox extends Component {
           <input
             onChange={e => this.handleChange(e)}
             type="search"
-            placeholder="Search by First Name"
+            placeholder="Search for any NBA player"
           />
           {this.renderSuggestions()}
         </div>
