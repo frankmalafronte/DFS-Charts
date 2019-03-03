@@ -108,7 +108,4 @@ const oneDayScraper = async function() {
   await handleDayData()
 }
 
-oneDayScraper()
-console.log('done')
-
 module.exports = oneDayScraper
