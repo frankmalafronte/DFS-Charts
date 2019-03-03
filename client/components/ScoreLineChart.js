@@ -9,12 +9,12 @@ const coerceChartData = props => {
   return output
 }
 
-function createSalaryLineChart(props) {
+function createScoreLineChart(props) {
   let data = coerceChartData(props)
   return (
     <div className="Chart">
       <Chart
-        width="1600%"
+        width="1600px"
         height="800px"
         chartType="LineChart"
         loader={<div> Loading Chart </div>}
@@ -29,4 +29,4 @@ function createSalaryLineChart(props) {
   )
 }
 
-export default createSalaryLineChart
+export default createScoreLineChart
