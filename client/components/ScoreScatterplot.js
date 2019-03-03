@@ -14,12 +14,13 @@ function createScoreScatterPlot(props) {
   return (
     <div>
       <Chart
-        width="1400px"
+        width="1600px"
         height="800px"
         chartType="ScatterChart"
         loader={<div> Loading Chart </div>}
         data={data}
         options={{
+          chartArea: {left: '8%'},
           legend: 'none',
           title: 'Fantasy Points Scored'
         }}

@@ -12,14 +12,15 @@ const coerceChartData = props => {
 function createSalaryLineChart(props) {
   let data = coerceChartData(props)
   return (
-    <div>
+    <div className="Chart">
       <Chart
-        width="1400px"
+        width="1600%"
         height="800px"
         chartType="LineChart"
         loader={<div> Loading Chart </div>}
         data={data}
         options={{
+          chartArea: {left: '8%'},
           legend: 'none',
           title: 'Points Scored: Line'
         }}

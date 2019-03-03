@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react'
 import Axios from '../../node_modules/axios'
-import {Link} from 'react-router-dom'
 import './Styling.css'
 
 // import Autosuggest from 'react-autosuggest';
