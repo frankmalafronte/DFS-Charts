@@ -9,5 +9,4 @@ react-google-charts was a simple task (and will be updated as I update the proje
 via a free api, so I would have to learn how to scrape the data. In order to accomplish that, I would have to learn how to use Pupeteer, and create two functions, one that I could
 to scrape all past data and one that could be called each day via a cron job.
 
-As of February 3rd 2019, the app's back end is complete, and I have created a barebone UI for the time being so that the app can be used immediately, since the NBA season is
-ongoing. Future updates will be to the front end.
+My friend, or any user, can now search for any NBA player by first or last name and be taken to an analytics page created from a database of all NBA games played this season. 
